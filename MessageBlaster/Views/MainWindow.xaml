@@ -2,12 +2,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:MessageBlaster.ViewModels;assembly=MessageBlaster"
         Icon="resm:MessageBlaster.Assets.avalonia-logo.ico"
-        Title="MessageBlaster">
-
+        Title="MessageBlaster"
+        Height="160"
+        Width="400">
+  
   <Design.DataContext>
     <vm:MainWindowViewModel/>
   </Design.DataContext>
+  <StackPanel>
+    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <StackPanel Orientation ="Horizontal" Margin="0,0,0,10">
+    <TextBlock Text="Destination:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0" />
+    <TextBox Text="{Binding Destination, Mode=TwoWay}" MinWidth="200.0"  Margin="15,0,0,0" />
+    </StackPanel>
   
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>    
-  
+   
+    <StackPanel Orientation ="Horizontal" Margin="0,0,0,10">      
+      <TextBlock Text="Port:" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="55,0,0,0"  />
+      <TextBox Text="{Binding Port, Mode=TwoWay}" MinWidth="200.0"  Margin="15,0,0,0" />
+    </StackPanel>
+    <StackPanel Orientation ="Horizontal" Margin="0,0,0,10">
+   
+    
+      <Button Content="Browse:" FontWeight="400" Command="{Binding BrowseFileButtonCommand}" Margin="29,0,0,0"  />
+      <TextBox Text="{Binding TcpBinaryFilePath, Mode=TwoWay}" MinWidth="200.0" Margin="13,0,0,0"  />      
+  </StackPanel>
+    <Button Content="Send TCP Message via File" Command="{Binding SendTcpButtonCommand}"/>
+  </StackPanel>
 </Window>

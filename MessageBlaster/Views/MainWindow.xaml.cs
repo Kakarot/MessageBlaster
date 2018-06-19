@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using System;
 
 namespace MessageBlaster.Views
 {
@@ -15,5 +16,6 @@ namespace MessageBlaster.Views
         {
             AvaloniaXamlLoader.Load(this);
         }
+
     }
 }
