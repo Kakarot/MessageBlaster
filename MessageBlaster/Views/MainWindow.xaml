@@ -3,7 +3,7 @@
         xmlns:vm="clr-namespace:MessageBlaster.ViewModels;assembly=MessageBlaster"
         Icon="resm:MessageBlaster.Assets.avalonia-logo.ico"
         Title="MessageBlaster"
-        Height="160"
+        Height="200"
         Width="400">
   
   <Design.DataContext>
@@ -28,5 +28,6 @@
       <TextBox Text="{Binding TcpBinaryFilePath, Mode=TwoWay}" MinWidth="200.0" Margin="13,0,0,0"  />      
   </StackPanel>
     <Button Content="Send TCP Message via File" Command="{Binding SendTcpButtonCommand}"/>
-  </StackPanel>
+    <Button Content="Send UDP Message via File" Command="{Binding SendUdpButtonCommand}"/>
+    </StackPanel>
 </Window>

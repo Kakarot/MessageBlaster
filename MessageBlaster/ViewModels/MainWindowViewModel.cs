@@ -69,7 +69,8 @@ namespace MessageBlaster.ViewModels
 
         public ReactiveCommand<Unit, Unit> BrowseFileButtonCommand { get; }
         public ReactiveCommand<Unit, Unit> SendTcpButtonCommand { get; }
-                     
+        public ReactiveCommand<Unit, Unit> SendUdpButtonCommand { get; }
+
 
         public MainWindowViewModel()
         {
@@ -81,6 +82,7 @@ namespace MessageBlaster.ViewModels
 
             BrowseFileButtonCommand = ReactiveCommand.Create(LaunchOpenFileDialog);
             SendTcpButtonCommand = ReactiveCommand.Create(SendTcpMessage);
+            SendUdpButtonCommand = ReactiveCommand.Create(SendUdpMessage);
 
             //Populate UI defaults from appsettings.json file
             PopulateDefaultDataFromAppSettings();
@@ -90,6 +92,12 @@ namespace MessageBlaster.ViewModels
         {
             var binarySender = new BinarySender(this.destination,this.port);
             Thread sendMessageThread = new Thread(()=>binarySender.SendMessage(GetDataFromFile(TcpBinaryFilePath)));
+            sendMessageThread.Start();
+        }
+        private void SendUdpMessage()
+        {
+            var binarySender = new UdpBinarySender(this.destination, this.port);
+            Thread sendMessageThread = new Thread(() => binarySender.SendMessage(GetDataFromFile(TcpBinaryFilePath)));
             sendMessageThread.Start();
         }
 
