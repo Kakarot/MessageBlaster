@@ -1,5 +1,8 @@
 using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using MessageBlaster.ViewModels;
+using MessageBlaster.Views;
 
 namespace MessageBlaster
 {
@@ -9,5 +12,17 @@ namespace MessageBlaster
         {
             AvaloniaXamlLoader.Load(this);
         }
-   }
+        public override void OnFrameworkInitializationCompleted()
+        {
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                desktop.MainWindow = new MainWindow
+                {
+                    DataContext = new MainWindowViewModel(desktop.MainWindow),
+                };
+            }
+
+            base.OnFrameworkInitializationCompleted();
+        }
+    }
 }

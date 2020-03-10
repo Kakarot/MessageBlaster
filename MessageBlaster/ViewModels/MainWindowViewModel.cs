@@ -16,6 +16,7 @@ namespace MessageBlaster.ViewModels
         private string destination;
         private int port;
         private string tcpBinaryFilePath;
+        private Window parentWindow;
 
 
         public static IConfiguration Configuration { get; set; }
@@ -72,8 +73,9 @@ namespace MessageBlaster.ViewModels
         public ReactiveCommand<Unit, Unit> SendUdpButtonCommand { get; }
 
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(Window parentWindow)
         {
+            this.parentWindow = parentWindow;
             var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json");
@@ -114,7 +116,7 @@ namespace MessageBlaster.ViewModels
             var dlg = new OpenFileDialog();
             dlg.Filters.Add(new FileDialogFilter() { Name = "All", Extensions = { "xml" } });
                        
-            var result = await dlg.ShowAsync();
+            var result = await dlg.ShowAsync(parentWindow);
             if (result != null && result.Length > 0)
             {
                 TcpBinaryFilePath = result[0];

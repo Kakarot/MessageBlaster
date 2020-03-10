@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:MessageBlaster.ViewModels;assembly=MessageBlaster"
+        x:Class="MessageBlaster.Views.MainWindow"
         Icon="resm:MessageBlaster.Assets.avalonia-logo.ico"
         Title="MessageBlaster"
         Height="200"
